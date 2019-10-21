@@ -1,0 +1,14 @@
+{
+  "extends": ["./tslint-gts.json"],
+  "linterOptions": {
+    "exclude": [".pnp.js"]
+  },
+  "rules": {
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "allow-leading-underscore",
+      "allow-trailing-underscore"
+    ]
+  }
+}

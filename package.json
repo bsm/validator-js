@@ -1,0 +1,31 @@
+{
+  "name": "bsm-validator",
+  "version": "0.1.0",
+  "description": "Struct validator and rules generator",
+  "repository": "https://github.com/bsm/validator-js.git",
+  "author": "Dimitrij Denissenko",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/bsm/validator-js#readme",
+  "bugs": {
+    "url": "https://github.com/bsm/validator-js/issues"
+  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "lint": "tslint -p .",
+    "lint:rules": "curl -sSL -o tslint-gts.json https://raw.githubusercontent.com/google/gts/master/tslint-rules.json",
+    "build": "tsc -p .",
+    "check": "$_ run lint & $_ run test",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "*",
+    "@types/node": "*",
+    "jest": "*",
+    "prettier": "*",
+    "ts-jest": "*",
+    "tslint": "*",
+    "tslint-config-prettier": "*",
+    "typescript": "^3"
+  }
+}
