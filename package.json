@@ -11,12 +11,20 @@
   },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
   "scripts": {
     "lint": "tslint -p .",
     "lint:rules": "curl -sSL -o tslint-gts.json https://raw.githubusercontent.com/google/gts/master/tslint-rules.json",
+    "format": "prettier --write 'src/**/*.ts'",
     "build": "tsc -p .",
-    "check": "$_ run lint & $_ run test",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "$_ run build",
+    "prepublishOnly": "$_ run lint & $_ run test",
+    "preversion": "$_ run lint",
+    "version": "$_ run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "devDependencies": {
     "@types/jest": "*",
