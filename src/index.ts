@@ -115,9 +115,9 @@ class VInclusion extends Validation {
     super(attrs);
 
     if (this.enum != null && this.values == null) {
-      this.values = Object.keys(this.enum)
-        .map(v => Number(v))
-        .filter(v => !isNaN(v));
+      this.values = Object.entries(this.enum)
+        .map(([k, v]) => (isNaN(Number(k)) ? v : undefined))
+        .filter(v => v != null);
     }
     this.enum = undefined;
   }

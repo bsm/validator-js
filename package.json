@@ -1,6 +1,6 @@
 {
   "name": "bsm-validator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Struct validator and rules generator",
   "repository": "https://github.com/bsm/validator-js.git",
   "author": "Dimitrij Denissenko",
@@ -34,6 +34,6 @@
     "ts-jest": "*",
     "tslint": "*",
     "tslint-config-prettier": "*",
-    "typescript": "^3"
+    "typescript": "^3.7.4"
   }
 }
