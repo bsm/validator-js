@@ -4,11 +4,7 @@
     "exclude": [".pnp.js"]
   },
   "rules": {
-    "variable-name": [
-      true,
-      "ban-keywords",
-      "allow-leading-underscore",
-      "allow-trailing-underscore"
-    ]
+    "no-default-export": false,
+    "variable-name": [true, "ban-keywords", "allow-leading-underscore", "allow-trailing-underscore"]
   }
 }

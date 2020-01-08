@@ -6,10 +6,17 @@ enum MockEnum {
   C,
 }
 
+enum StringEnum {
+  A = 'a',
+  B = 'b',
+  C = 'c',
+}
+
 interface MockStruct {
   title?: string;
   count?: number;
   kind?: MockEnum;
+  type?: StringEnum;
 }
 
 describe('Validator', () => {
@@ -145,20 +152,38 @@ describe('Validator', () => {
     subject = new Validator<MockStruct>({
       kind: { inclusion: { enum: MockEnum } },
     });
+    const kerr = { error: 'inclusion', options: { values: [0, 1, 2] } };
 
-    const xerr = { error: 'inclusion', options: { values: [0, 1, 2] } };
     expect(subject.check('kind', undefined)).toBeUndefined();
     expect(subject.check('kind', null)).toBeUndefined();
     expect(subject.check('kind', '')).toBeUndefined();
 
-    expect(subject.check('kind', 'z')).toEqual(xerr);
-    expect(subject.check('kind', '2')).toEqual(xerr);
-    expect(subject.check('kind', 7)).toEqual(xerr);
-    expect(subject.check('kind', false)).toEqual(xerr);
+    expect(subject.check('kind', 'z')).toEqual(kerr);
+    expect(subject.check('kind', '2')).toEqual(kerr);
+    expect(subject.check('kind', 7)).toEqual(kerr);
+    expect(subject.check('kind', false)).toEqual(kerr);
 
     expect(subject.check('kind', 0)).toBeUndefined();
     expect(subject.check('kind', 1)).toBeUndefined();
     expect(subject.check('kind', 2)).toBeUndefined();
+
+    subject = new Validator<MockStruct>({
+      type: { inclusion: { enum: StringEnum } },
+    });
+    const terr = { error: 'inclusion', options: { values: ['a', 'b', 'c'] } };
+
+    expect(subject.check('type', undefined)).toBeUndefined();
+    expect(subject.check('type', null)).toBeUndefined();
+    expect(subject.check('type', '')).toBeUndefined();
+
+    expect(subject.check('type', 'z')).toEqual(terr);
+    expect(subject.check('type', '2')).toEqual(terr);
+    expect(subject.check('type', 7)).toEqual(terr);
+    expect(subject.check('type', false)).toEqual(terr);
+
+    expect(subject.check('type', 'a')).toBeUndefined();
+    expect(subject.check('type', 'b')).toBeUndefined();
+    expect(subject.check('type', 'c')).toBeUndefined();
   });
 
   it('should validate format', () => {
